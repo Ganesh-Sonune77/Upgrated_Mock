@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mock Test</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <h1>Mock Test</h1>
+    <button id="admin" onclick="showLogin()" style="float:right; margin-top: -50px;">Admin</button>
+
+    <div id="questionBox">
+        {% for q in questions %}
+            <div class="question" id="q{{ loop.index0 }}"{% if not loop.first %} style="display: none;"{% endif %}>
+                <h2>Q{{ loop.index }} {{ q.question }}</h2>
+                <div class="options">
+                    <button onclick="selectAnswer(this, '{{ q.correct_option }}', 'A')">a) {{ q.option_a }}</button>
+                    <button onclick="selectAnswer(this, '{{ q.correct_option }}', 'B')">b) {{ q.option_b }}</button>
+                    <button onclick="selectAnswer(this, '{{ q.correct_option }}', 'C')">c) {{ q.option_c }}</button>
+                    <button onclick="selectAnswer(this, '{{ q.correct_option }}', 'D')">d) {{ q.option_d }}</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button id="next" onclick="nextQuestion()">Next</button>
+</div>
+
+<!-- Admin Login Modal -->
+<div id="loginModal">
+    <h3>Admin Login</h3>
+    <input type="text" id="email" placeholder="Email"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="submitLogin()">Login</button>
+    <p id="loginMessage" style="color:red;"></p>
+</div>
+
+<script>
+    let current = 0;
+    const questions = document.querySelectorAll('.question');
+
+    function selectAnswer(btn, correct, selected) {
+        const buttons = btn.parentNode.querySelectorAll('button');
+        buttons.forEach(b => b.disabled = true); // disable all buttons after one is clicked
+
+        fetch('/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `correct=${correct}&selected=${selected}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'correct') {
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('incorrect');
+                // Highlight the correct option too
+                buttons.forEach(b => {
+                    if (b.textContent.trim().startsWith(correct.toLowerCase() + ')')) {
+                        b.classList.add('correct');
+                    }
+                });
+            }
+        });
+    }
+
+    function nextQuestion() {
+        if (current < questions.length - 1) {
+            questions[current].style.display = 'none';
+            current++;
+            questions[current].style.display = 'block';
+        } else {
+            alert("You've completed the test!");
+        }
+    }
+
+    function showLogin() {
+        document.getElementById('loginModal').style.display = 'block';
+    }
+
+    function submitLogin() {
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('password').value;
+
+        fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `email=${email}&password=${pass}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.location.href = '/admin';
+            } else {
+                document.getElementById('loginMessage').innerText = 'Invalid credentials';
+            }
+        });
+    }
+</script>
+</body>
+</html>

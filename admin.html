@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Admin Panel</h2>
+    <form method="post" class="admin-form">
+        <textarea name="question" placeholder="Enter your question" required></textarea>
+        <input name="a" placeholder="Option A" required>
+        <input name="b" placeholder="Option B" required>
+        <input name="c" placeholder="Option C" required>
+        <input name="d" placeholder="Option D" required>
+        <select name="correct">
+            <option value="A">Correct: A</option>
+            <option value="B">Correct: B</option>
+            <option value="C">Correct: C</option>
+            <option value="D">Correct: D</option>
+        </select>
+        <button type="submit">Add Question</button>
+    </form>
+    <a href="/logout">Logout</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+/* Reset default */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef2f7;
+    padding: 20px;
+    color: #333;
+    background-color: #ffcbd0b5;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #50e4ff42;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 60px;
+    color: #2c3e50;
+    background-color: #ffa500;
+
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #34495e;
+}
+
+/* Question Styling */
+.question {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #dcdde1;
+    border-radius: 10px;
+    background: #cebaba;
+}
+
+/* Option Buttons */
+.options button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    margin: 8px 0;
+    font-size: 16px;
+    border: 2px solid #dcdde1;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.options button:hover:not(:disabled) {
+    background-color: #d6eaff;
+    border-color: #3498db;
+}
+
+/* Feedback colors */
+.correct {
+    background-color: #c8e6c9 !important;
+    border-color: #2ecc71 !important;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.incorrect {
+    background-color: #ffcdd2 !important;
+    border-color: #e74c3c !important;
+    color: #b71c1c;
+    font-weight: bold;
+}
+
+button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+/* Admin Button */
+.container > #admin {
+width: 10%;
+background-color: #142aea3b;
+    color: white;
+    padding: 5px 7px;
+    border-radius: 10px;
+    position: relative;
+    top: -81px;
+    cursor: pointer;
+    left: 31px;
+    border: none;
+
+}
+
+
+/* Next Button */
+.container > #next {
+   width: 20%;
+    background-color: #25b90be3;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    transition: 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.container > button:hover {
+    background-color: #2980b9;
+}
+
+/* Admin Login Modal */
+#loginModal {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 999;
+    width: 90%;
+    max-width: 400px;
+}
+
+#loginModal input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+#loginModal button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+#loginModal button:hover {
+    background-color: #1a252f;
+}
+
+#loginMessage {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .options button {
+        font-size: 15px;
+    }
+
+    .container > button {
+        font-size: 16px;
+    }
+}
+
+nav {
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav a:hover {
+    background-color: #1a252f;
+}
+
+
+    
+.list {
+    margin: 4% 2px;
+    padding: 2px 2px;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    padding-left: 50px;
+   
+}
+
+ h3 {
+    margin-left: 20px;
+    padding-left: 38%;
+    color: #0f1e2b;
+    background-color: #3ad429;
+
+
+}
+    
+
+.text_1 img {
+    width: 300px;
+    height: 22%;
+    border-radius: 8px;
+    padding: 2px 2px;
+    color: #0f1e2b;
+    background-color: #3ad429;
+
+   
+}
+
+
+.text_2 img {
+    width: 300px;
+    height: 22%;
+    border-radius: 8px;
+    padding: 4px 2px;
+    color: #0f1e2b;
+    background-color: #3ad429;
+
+}
+.text_3 img {
+    width: 300px;
+    height: 22%;
+    border-radius: 8px;
+     padding: 6px 2px;
+     color: #0f1e2b;
+    background-color: #3ad429;
+
+}
+.text_4 img {
+    width: 300px;
+    height: 22%;
+    border-radius: 8px;
+     padding: 8px 2px;
+     color: #0f1e2b;
+    background-color: #3ad429;
+
+}
+
+
